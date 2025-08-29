@@ -20,9 +20,9 @@ namespace TESTE.Services
         // Buscar activity pelo Id
         public Activity? GetById(string id) => _activities.Find(a => a.Id == id).FirstOrDefault();
 
-        // Buscar todas as activities de um cliente pelo CustomerId
-        public List<Activity> GetByCustomerId(string customerId) =>
-            _activities.Find(a => a.CustomerId == customerId).ToList();
+        // Buscar todas as activities de um usuario pelo Userid
+        public List<Activity> GetByUserid(string Userid) =>
+            _activities.Find(a => a.UserId == Userid).ToList();
             
         // Criar uma nova activity
         public void AddActivity(Activity activity) => _activities.InsertOne(activity);
@@ -31,7 +31,5 @@ namespace TESTE.Services
         public void UpdateActivity(string id, Activity updatedActivity) =>
             _activities.ReplaceOne(a => a.Id == id, updatedActivity);
 
-        // Deletar uma activity pelo Id
-        public void DeleteActivity(string id) => _activities.DeleteOne(a => a.Id == id);
     }
 }

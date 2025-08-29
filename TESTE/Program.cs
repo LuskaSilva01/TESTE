@@ -16,7 +16,6 @@ builder.Services.Configure<MongoDbSettings>(
 );
 builder.Services.AddSingleton<MongoDbService>();
 builder.Services.AddSingleton<UserService>();
-builder.Services.AddSingleton<CustomerService>();
 builder.Services.AddSingleton<ActivityService>();
 
 builder.Services.AddControllers();

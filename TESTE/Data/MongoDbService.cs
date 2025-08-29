@@ -17,11 +17,10 @@ public class MongoDbService
         var client = new MongoClient(settings.Value.Dbconnection);
         _database = client.GetDatabase(settings.Value.DatabaseName);
 
-    }
-   
-   public IMongoCollection<User> Users => _database.GetCollection<User>("Usuarios");
-        public IMongoCollection<Customer> Customers => _database.GetCollection<Customer>("Customers");
-        public IMongoCollection<Activity> Activities => _database.GetCollection<Activity>("Activities");
+    } 
+    public IMongoCollection<User> Users => _database.GetCollection<User>("Usuarios");
+        
+    public IMongoCollection<Activity> Activities => _database.GetCollection<Activity>("Activities");
 
     public IMongoDatabase Database => _database;
 

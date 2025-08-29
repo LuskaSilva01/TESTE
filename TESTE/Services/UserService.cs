@@ -24,7 +24,15 @@ namespace TESTE.Services
         public List<User> Get() => _usuarios.Find(u => u.IsActive).ToList();
 
         // Ler um usuário pelo ID
-        public User Get(string id) => _usuarios.Find(u => u.Id == id && u.IsActive).FirstOrDefault();
+        public User? Get(string id) => _usuarios.Find(u => u.Id == id && u.IsActive).FirstOrDefault();
+
+        // Ler um usuário (ativo ou inativo) pelo ID
+        public User? GetIncludeInactive(string id) =>
+            _usuarios.Find(u => u.Id == id).FirstOrDefault();
+
+        // Ler um usuário pelo Email
+        public User? GetByEmail(string email) =>
+            _usuarios.Find(u => u.Email == email && u.IsActive).FirstOrDefault();
 
         // Criar um novo usuário
         public User Create(User usuario)
@@ -34,17 +42,33 @@ namespace TESTE.Services
             _usuarios.InsertOne(usuario);
             return usuario;
         }
-
-        // Exclusão lógica do usuário
-        public void Delete(string id)
+        // Update geral de todos os atributos
+        public void Update(string id, User updatedUser)
         {
-            var usuario = _usuarios.Find(u => u.Id == id).FirstOrDefault();
-            if (usuario != null)
+            var existingUser = _usuarios.Find(u => u.Id == id).FirstOrDefault();
+            if (existingUser == null)
+                throw new Exception("Usuário não encontrado.");
+
+            if (!string.IsNullOrEmpty(updatedUser.PasswordHash) &&
+                updatedUser.PasswordHash != existingUser.PasswordHash)
             {
-                usuario.IsActive = false;
-                usuario.DeletedAt = DateTime.UtcNow;
-                _usuarios.ReplaceOne(u => u.Id == id, usuario);
+                updatedUser.PasswordHash = _passwordHasher.HashPassword(updatedUser, updatedUser.PasswordHash);
             }
+            else
+            {
+                updatedUser.PasswordHash = existingUser.PasswordHash;
+            }
+
+            updatedUser.Id = existingUser.Id;
+
+            _usuarios.ReplaceOne(u => u.Id == id, updatedUser);
+        }
+
+        // Atualizar apenas o IsActive (exclusão lógica)
+        public void SetActiveStatus(string id, bool isActive)
+        {
+            var update = Builders<User>.Update.Set(u => u.IsActive, isActive);
+            _usuarios.UpdateOne(u => u.Id == id, update);
         }
     }
 }

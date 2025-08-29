@@ -9,9 +9,9 @@ public class Activity
     [BsonRepresentation(BsonType.ObjectId)]
     public string? Id { get; set; }
     
-    [BsonElement("customer_id")]
+    [BsonElement("user_id")]
     [BsonRepresentation(BsonType.ObjectId)]
-    public string CustomerId { get; set; } = null!;
+    public string UserId { get; set; } = null!;
 
     [BsonElement("descricao")]
     public string Descricao { get; set; } = null!;
