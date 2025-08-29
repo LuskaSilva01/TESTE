@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    
+    {
+     "name": "API ASP.NET Core",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-api",
+      "program": "${workspaceFolder}\\TESTE\\bin\\Debug\\net8.0\\TESTE.dll",
+      "args": [],
+      "cwd": "C:\\Users\\Luska\\Desktop\\ApiCsharp\\TESTE",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      
+      }
+    }
+
+  ]
+}

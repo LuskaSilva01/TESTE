@@ -1,25 +1,26 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TESTE.Data.Entities;
+using TESTE.Services;
 using TESTE.Data;
 
-namespace TESTE.Controller
-{
-    [Route("api/[controller]")]
+namespace TESTE.Controller;
+
     [ApiController]
+    [Route("api/[controller]")]
     public class CustomerController : ControllerBase
     {
-        private readonly MongoDbService _mongoDbService;
+        private readonly CustomerService _customerService;
 
-        public CustomerController(MongoDbService mongoDbService)
+        public CustomerController(CustomerService customerService)
         {
-            _mongoDbService = mongoDbService;
+             _customerService = customerService;
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            var customers = _mongoDbService.GetAllCustomers();
+            var customers = _customerService.GetAllCustomers();
 
             return Ok(customers);
         }
@@ -27,7 +28,7 @@ namespace TESTE.Controller
         [HttpPost]
         public IActionResult Create([FromBody] Customer customer)
         {
-            _mongoDbService.AddCustomer(customer);
+            _customerService.AddCustomer(customer);
             return Ok(new
             {
                 mensagem = "Cliente cadastrado com sucesso",
@@ -35,5 +36,4 @@ namespace TESTE.Controller
             });
         }
 
-            }
-        } 
+    }

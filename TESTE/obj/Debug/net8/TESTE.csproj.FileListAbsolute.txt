@@ -1,8 +1,0 @@
-C:\Users\Luska\Desktop\APIC#\TESTE\obj\Debug\net8\TESTE.csproj.AssemblyReference.cache
-C:\Users\Luska\Desktop\APIC#\TESTE\obj\Debug\net8\rpswa.dswa.cache.json
-C:\Users\Luska\Desktop\APIC#\TESTE\obj\Debug\net8\TESTE.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Luska\Desktop\APIC#\TESTE\obj\Debug\net8\TESTE.AssemblyInfoInputs.cache
-C:\Users\Luska\Desktop\APIC#\TESTE\obj\Debug\net8\TESTE.AssemblyInfo.cs
-C:\Users\Luska\Desktop\APIC#\TESTE\obj\Debug\net8\TESTE.csproj.CoreCompileInputs.cache
-C:\Users\Luska\Desktop\APIC#\TESTE\obj\Debug\net8\TESTE.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Luska\Desktop\APIC#\TESTE\obj\Debug\net8\TESTE.MvcApplicationPartsAssemblyInfo.cache
